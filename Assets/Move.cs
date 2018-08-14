@@ -15,7 +15,10 @@ public class Move : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
         Vector3 lookAtGoal = new Vector3(goal.position.x, this.transform.position.y, goal.position.z);
-        this.transform.LookAt(lookAtGoal);
+        Vector3 direction = lookAtGoal - this.transform.position;
+        this.transform.rotation = Quaternion.Slerp(transform.rotation,
+                                                    Quaternion.LookRotation(direction),
+                                                    Time.deltaTime * rotSpeed);
 		if(Vector3.Distance(this.transform.position,lookAtGoal)>accuracy)
 			this.transform.Translate(0,0,speed*Time.deltaTime);
 	}
