@@ -19,7 +19,5 @@ public class Move : MonoBehaviour {
         this.transform.rotation = Quaternion.Slerp(transform.rotation,
                                                     Quaternion.LookRotation(direction),
                                                     Time.deltaTime * rotSpeed);
-		if(Vector3.Distance(this.transform.position,lookAtGoal)>accuracy)
-			this.transform.Translate(0,0,speed*Time.deltaTime);
 	}
 }
